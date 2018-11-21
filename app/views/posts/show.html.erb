@@ -12,7 +12,7 @@
  <%= f.hidden_field  :author,  value:  current_user.email %>
 
 <p2> Комментарии: </h2><br/>
-  <button type="button" class="btn btn-outline-primary"><%=current_user.email%>:</button>
+  <button type="button" class="btn btn-outline-primary"><%=current_user.email%></button>
 
 <t2> <%= f.text_field :text%></t2>
 
@@ -20,4 +20,16 @@
 
  <%end%>             
 
-       
+<!--comments-->
+
+<% @post.comments.reverse_each do |comment| %>
+      <%if comment.text !=nil %>
+        <%if current_user.email == comment.author%>
+            <button type="button" class="float-left btn btn-success"><%=comment.author%></button><br/><br/>
+            <button type="button" class="float-left btn btn-outline-dark"><%=comment.text%></button><br/><br/><hr/>
+        <%else%>
+            <button type="button" class="float-right btn btn-primary"><%=comment.author%></button><br/><br/>
+            <button type="button" class="float-right btn btn-outline-dark"><%=comment.text%></button><br/><br/><hr/>
+            <%end%>
+        <%end%>
+<%end%>
