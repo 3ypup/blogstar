@@ -1,9 +1,25 @@
+<%if user_signed_in?%>
+
+            <a class="btn btn-successt" href=<%=new_post_url%>> Написать новый пост </a>      
+          
+        
+<%end%>
+
 
 <%@posts.each do |post|%>
 
 
-<%=post.title%>
+<a href = <%=post_url(post)%>>
+<h4 class="text-left">
+  <%=post.title%></h4><br/>
 
-<%=post.content%>
+<img  class="img-fluid"  style="height: 250px;" src=<%=post.mainpic%>><br/>
+
+<h4 class="text-left">
+  <%=post.content.html_safe.first(300)+"..."%></h4><br/>
+
+
+<button type="button" class="btn btn-outline-primary pull-right"> читать далее...</button></a><br/><br/><hr/>
+
 
 <%end%>
