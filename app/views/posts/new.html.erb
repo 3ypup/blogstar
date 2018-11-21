@@ -1,1 +1,22 @@
-new post
+
+
+<%= form_for :post,  url: posts_path do |f| %> 
+
+
+<% if @post.errors.any? %>
+            <div id="errorExplanation">
+            	 
+                <ul>
+                    <% @post.errors.messages.each do |msg| %>
+				<div class="alert alert-danger">
+                    <li><%= msg[1][0]%></li>
+               	</div>
+                    <% end %>
+                  </ul>
+             
+            </div>
+  <% end %>
+
+
+
+  <%end%>
