@@ -5,6 +5,19 @@
 <h4 class="text-left">
   <%=@post.content.html_safe%></h4><br/>
    
-              
+ <br/><br/><hr/>
+
+
+ <%= form_for ([@post, @post.comments.build]) do |f| %>
+ <%= f.hidden_field  :author,  value:  current_user.email %>
+
+<p2> Комментарии: </h2><br/>
+  <button type="button" class="btn btn-outline-primary"><%=current_user.email%>:</button>
+
+<t2> <%= f.text_field :text%></t2>
+
+<button type="submit" class="btn btn-outline-primary">Отправить</button></a><br/><br/><hr/>
+
+ <%end%>             
 
        
