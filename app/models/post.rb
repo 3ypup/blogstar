@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+has_many :comments
 
   validates :title, presence: {:message => "Выберите тему поста!!"}
   validates :title, :length => { :maximum => 40, :message => "Слишком длинная тема поста !!"}
