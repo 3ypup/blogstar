@@ -32,6 +32,11 @@
 	<t2><%= f.label :Обложка_поста %></t2>
     <p1><%= f.file_field :mainpic %></p1><br/>
 
+
+	<t2><%= f.label :Выбрать_дату_публикации_поста %></t2>
+    <p1><%= f.datetime_select :postdate, value: DateTime.now %></p1><br/>
+
+
 	<button class="btn btn-primary" type="submit">Создать пост</button>
  <%end%>
 
