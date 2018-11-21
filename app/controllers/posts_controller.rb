@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
 
-def authentificate
+
   before_action :authenticate_user!
-end
+
 
 
   def index
@@ -19,7 +19,7 @@ end
 
   def create
     @post = Post.new(post_params)
-    
+
     if  @post.save
         redirect_to @post
       else
