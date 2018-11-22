@@ -49,6 +49,34 @@ class PostsController < ApplicationController
       end
   end
 
+
+
+ def edit
+
+      @post = Post.find(params[:id]) 
+
+  end
+
+
+def update
+
+  @post = Post.find(params[:id])
+
+  if current_user.email == @post.author
+
+     if  @post.update(post_params) 
+        redirect_to @post
+
+      else
+        render action: 'edit'
+      end
+      
+    else
+      redirect_to @post
+    end
+end
+
+
   def destroy
   end
 

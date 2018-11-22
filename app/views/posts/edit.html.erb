@@ -1,1 +1,32 @@
-Edit post
+
+
+<%= form_for :post,  url: post_path(@post), method: :put do |f| %> 
+
+<h1> <%= f.hidden_field  :author, value: current_user.email %> </h1>
+
+	<t2> <%= f.label :Тема_поста %> </t2><br/>
+	<p1> <%= f.text_field  :title, size: "50x1", value: @post.title  %> </p1><br/>
+
+	<t2><%= f.label :Текст_поста %> </t2><br/>
+	<textarea  name="post[content]"> <%= @post.content%>
+	</textarea>
+	<br/>
+
+
+	<t2><%= f.label :Обложка_поста %></t2>
+    <p1><%= f.file_field :mainpic, value: @post.mainpic  %></p1><br/>
+
+
+	<t2><%= f.label :Выбрать_дату_публикации_поста %></t2>
+    <p1><%= f.datetime_select :postdate.to_s, value: DateTime.now %></p1><br/>
+
+
+	<button class="btn btn-primary" type="submit">Создать пост</button>
+ <%end%>
+
+
+
+
+<script>
+      CKEDITOR.replace( 'post[content]');
+</script>

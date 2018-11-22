@@ -7,6 +7,9 @@
    
  <br/><br/><hr/>
 
+<%if current_user.email == @post.author%>
+  <%= link_to "Редактировать пост", edit_post_path(@post)  %><br/><hr/>
+<%end%>
 
  <%= form_for ([@post, @post.comments.build]) do |f| %>
  <%= f.hidden_field  :author,  value:  current_user.email %>
@@ -48,7 +51,7 @@
               <%end%>
 
               <button type="button" class="float-right btn btn-outline-dark"><%=comment.text%></button><br/><br/><hr/>
-              
+
         <%else%>
 
                 <button type="button" class="float-left btn btn-outline-dark">Комментарий №<%=comment.id%></button><br/><br/>
