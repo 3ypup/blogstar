@@ -5,7 +5,7 @@
         
 <%end%>
 
-
+<%if @posts != nil%>
 <%@posts.each do |post|%>
 
 
@@ -22,4 +22,5 @@
 <button type="button" class="btn btn-outline-primary pull-right"> читать далее...</button></a><br/><br/><hr/>
 
 
+<%end%>
 <%end%>

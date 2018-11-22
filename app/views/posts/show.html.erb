@@ -25,11 +25,11 @@
 <% @post.comments.reverse_each do |comment| %>
       <%if comment.text !=nil %>
         <%if current_user.email == comment.author%>
-            <button type="button" class="float-left btn btn-success"><%=comment.author%></button><br/><br/>
-            <button type="button" class="float-left btn btn-outline-dark"><%=comment.text%></button><br/><br/><hr/>
-        <%else%>
-            <button type="button" class="float-right btn btn-primary"><%=comment.author%></button><br/><br/>
+            <button type="button" class="float-right btn btn-success"><%=comment.author%></button><br/><br/>
             <button type="button" class="float-right btn btn-outline-dark"><%=comment.text%></button><br/><br/><hr/>
+        <%else%>
+            <button type="button" class="float-left btn btn-primary"><%=comment.author%></button><br/><br/>
+            <button type="button" class="float-left btn btn-outline-dark"><%=comment.text%></button><br/><br/><hr/>
             <%end%>
         <%end%>
 <%end%>

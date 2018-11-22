@@ -34,7 +34,7 @@
 
 
 	<t2><%= f.label :Выбрать_дату_публикации_поста %></t2>
-    <p1><%= f.datetime_select :postdate, value: DateTime.now %></p1><br/>
+    <p1><%= f.datetime_select :postdate.to_s, value: DateTime.now %></p1><br/>
 
 
 	<button class="btn btn-primary" type="submit">Создать пост</button>

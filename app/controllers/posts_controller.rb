@@ -6,7 +6,27 @@ class PostsController < ApplicationController
 
 
   def index
-    @posts = Post.all
+
+    @posts_all = Post.all
+    @posts = []
+
+    if @posts_all.count >0 
+
+          @posts_all.each do |post|
+
+        if post.postdate.to_datetime < DateTime.now.to_datetime
+
+          @posts << post
+
+        elsif current_user.email == post.author
+
+         @posts << post
+         
+
+        end
+
+      end  
+    end 
     
   end
 
@@ -34,7 +54,7 @@ class PostsController < ApplicationController
 
 
   def post_params
-    params.require(:post).permit(:author, :content, :title, :mainpic, :datetime)
+    params.require(:post).permit(:author, :content, :title, :mainpic, :postdate)
   end
 
 end

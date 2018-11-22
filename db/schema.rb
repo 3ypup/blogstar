@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2018_11_21_134640) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "mainpic"
-    t.date "postdate"
+    t.datetime "postdate"
   end
 
   create_table "users", force: :cascade do |t|
