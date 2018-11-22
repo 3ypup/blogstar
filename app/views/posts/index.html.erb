@@ -1,3 +1,5 @@
+
+<!--check if user signed-->
 <%if user_signed_in?%>
 
     <a class="btn btn-outline-success pull-right" href=<%=new_post_url%>> Написать новый пост </a><br/><br/><hr/>      
@@ -5,6 +7,7 @@
         
 <%end%>
 
+<!--check if there are posts-->
 <%if @posts != nil%>
 <%@posts.each do |post|%>
 

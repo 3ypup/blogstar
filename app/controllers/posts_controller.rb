@@ -8,16 +8,19 @@ class PostsController < ApplicationController
   def index
 
     @posts_all = Post.all
+    
+    #create mass for posts
     @posts = []
 
+    # check if there is posts
     if @posts_all.count >0 
 
           @posts_all.each do |post|
-
+              #check if is it time to publick post
         if post.postdate.to_datetime < DateTime.now.to_datetime
-
+              #add this posts to mass
           @posts << post
-
+              #or if user is post author  add this posts to mass
         elsif current_user.email == post.author
 
          @posts << post
@@ -42,6 +45,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
 
+    #return to form if validation fail
     if  @post.save
         redirect_to @post
       else
@@ -62,15 +66,16 @@ def update
 
   @post = Post.find(params[:id])
 
+  #check to allowed edition only to authors
   if current_user.email == @post.author
-
+  #return to form if validation fail
      if  @post.update(post_params) 
         redirect_to @post
 
       else
         render action: 'edit'
       end
-      
+
     else
       redirect_to @post
     end

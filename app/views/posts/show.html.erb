@@ -1,24 +1,27 @@
 
+
 <h4 class="text-left">
-  <%=@post.title.html_safe%></h4><br/>
+  <%=@post.title%></h4><br/>
 <img  class="img-fluid"  style="height: 250px;" src=<%=@post.mainpic%>><br/>
 <h4 class="text-left">
   <%=@post.content.html_safe%></h4><br/>
    
  <br/><br/><hr/>
 
+<!--check if user is author, then edition showed-->
 <%if current_user.email == @post.author%>
   <%= link_to "Редактировать пост", edit_post_path(@post)  %><br/><hr/>
 <%end%>
 
+<!--comments add form-->
  <%= form_for ([@post, @post.comments.build]) do |f| %>
  <%= f.hidden_field  :author,  value:  current_user.email %>
 
   <p2> Комментарии: </p2><br/>
     <button type="button" class="btn btn-outline-primary"><%=current_user.email%></button><br/>
 
-
-      <input readonly type="text" class="alert alert-danger" name = "comment[reply]" id = "reply"/><br/>
+    <!--reply to input-->
+      <input readonly type="text" class="alert alert-light" name = "comment[reply]" id = "reply"/><br/>
 
 
       <t2> <%= f.text_field :text%></t2>
@@ -32,15 +35,16 @@
 <!--comments-->
 
 <% @post.comments.reverse_each do |comment| %>
+    <!--check if there is a comments -->
       <%if comment.text !=nil %>
+
+      <!--different comments show for comments authors-->
         <%if current_user.email == comment.author%>
 
             <button type="button" class="float-right btn btn-outline-dark">Комментарий №<%=comment.id%></button><br/><br/>
 
             <button type="button" class="float-right btn btn-success"><%=comment.author%></button><br/><br/>
-
-
-
+              <!--check if there is a reply-->
               <%if comment.reply.to_i>0%>
 
               <button type="button" class="float-right btn btn-secondary" data-container="body" data-toggle="popover" data-placement="left" data-content="<%=Comment.find(comment.reply.to_i).text%>">
@@ -74,6 +78,7 @@
 <%end%>
 
 
+<!--script to add comment number to input form-->
 <script>
 $(function(){
     $(".type").on("click", function(){

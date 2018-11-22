@@ -1,8 +1,8 @@
 
-
+<!--new post creation -->
 <%= form_for :post,  url: posts_path do |f| %> 
 
-
+<!--errors display -->
 <% if @post.errors.any? %>
             <div id="errorExplanation">
             	 
@@ -40,6 +40,7 @@
 	<button class="btn btn-primary" type="submit">Создать пост</button>
  <%end%>
 
+<!--augmented text editor -->
 <script>
       CKEDITOR.replace( 'post[content]');
 </script>
