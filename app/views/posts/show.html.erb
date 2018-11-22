@@ -11,16 +11,16 @@
  <%= form_for ([@post, @post.comments.build]) do |f| %>
  <%= f.hidden_field  :author,  value:  current_user.email %>
 
-<p2> Комментарии: </h2><br/>
-  <button type="button" class="btn btn-outline-primary"><%=current_user.email%></button>
+  <p2> Комментарии: </p2><br/>
+    <button type="button" class="btn btn-outline-primary"><%=current_user.email%></button><br/>
 
 
-<input   class="alert alert-danger" name = "comment[reply]" id = "reply"/><br/>
+      <input readonly type="text" class="alert alert-danger" name = "comment[reply]" id = "reply"/><br/>
 
 
-<t2> <%= f.text_field :text%></t2>
+      <t2> <%= f.text_field :text%></t2>
 
-<button type="submit" class="btn btn-outline-primary">Отправить</button></a><br/><br/><hr/>
+      <button type="submit" class="btn btn-outline-primary">Отправить</button></a><br/><br/><hr/>
 
 
 
@@ -31,15 +31,39 @@
 <% @post.comments.reverse_each do |comment| %>
       <%if comment.text !=nil %>
         <%if current_user.email == comment.author%>
+
+            <button type="button" class="float-right btn btn-outline-dark">Комментарий №<%=comment.id%></button><br/><br/>
+
             <button type="button" class="float-right btn btn-success"><%=comment.author%></button><br/><br/>
 
-            <button type="button" class="float-right btn btn-outline-dark"><%=comment.text%></button><br/><br/><hr/>
-        <%else%>
-            <button   type="button" class="float-left btn btn-primary"><%=comment.author%></button><br/><br/>
 
-             <button class="type btn btn-dark" type="button" name="submit" id=<%=comment.author%>>ОТВЕТИТЬ</button>
-        
-            <button  type="button" class="float-left btn btn-outline-dark"><%=comment.text%></button><br/><br/><hr/>
+
+              <%if comment.reply.to_i>0%>
+
+              <button type="button" class="float-right btn btn-secondary" data-container="body" data-toggle="popover" data-placement="left" data-content="<%=Comment.find(comment.reply.to_i).text%>">
+              Ответил на комментарий № <%=comment.reply%>
+            </button><br/><br/>
+
+
+              <%end%>
+
+              <button type="button" class="float-right btn btn-outline-dark"><%=comment.text%></button><br/><br/><hr/>
+              
+        <%else%>
+
+                <button type="button" class="float-left btn btn-outline-dark">Комментарий №<%=comment.id%></button><br/><br/>
+
+                <button   type="button" class="float-left btn btn-primary"><%=comment.author%></button><br/><br/>
+
+                 <button class="type btn btn-dark" type="button" name="submit" id=<%=comment.id%>>ОТВЕТИТЬ</button>
+
+                <%if comment.reply.to_i>0%>
+               
+                <button type="button" class="float-left btn btn-secondary" data-container="body" data-toggle="popover" data-placement="left" data-content="<%=Comment.find(comment.reply.to_i).text%>">
+                Ответил на комментарий № <%=comment.reply%>
+              </button><br/><br/>
+                <%end%>
+                <button  type="button" class="float-left btn btn-outline-dark"><%=comment.text%></button><br/><br/><hr/>
 
            
             <%end%>

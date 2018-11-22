@@ -76,12 +76,19 @@
   </body>
 
 <script>
+
+$(function () {
+  $('[data-toggle="popover"]').popover()
+
+
+
+
    CKEDITOR.editorConfig = function( config )
 {
    // misc options
    config.height = '500px';
 };
-
+})
 </script>
 
 </html>

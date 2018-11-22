@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_21_134640) do
+ActiveRecord::Schema.define(version: 2018_11_22_120707) do
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string "data_file_name", null: false
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2018_11_21_134640) do
     t.integer "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "reply"
     t.index ["post_id"], name: "index_comments_on_post_id"
   end
 
